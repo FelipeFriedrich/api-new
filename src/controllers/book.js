@@ -11,13 +11,16 @@ module.exports = class Book {
       .catch(next);
   }
 
-  static async findByPK(req, res, next) {
+  static findByPK(req, res, next) {
     try {
       const { id } = req.params;
-      const response = await BooksDataBase.findByPk(id)
-      return response
-    } catch (err) {
-      return err;
+      BooksDataBase.findByPk(id).then((result) => {
+        res.json(result);
+      })
+        .catch(next);
+    }catch(err){
+      console.error(err);
+      res.status(404).json(err);
     }
   }
 
@@ -35,27 +38,27 @@ module.exports = class Book {
       .catch(next);
   }
 
-  static async update(req, res, next){
-    try{
+  static async update(req, res, next) {
+    try {
       const { id } = req.params;
       const { nome, descricao } = req.body;
       const response = await BooksDataBase.update(
-        {nome, descricao},
-        {where: {'id': id}});
-        return response;
-    }catch(err){
+        { nome, descricao },
+        { where: { 'id': id } });
+      return response;
+    } catch (err) {
       return err;
     }
 
   }
 
-  static async delete(req, res, next){
-    try{
+  static async delete(req, res, next) {
+    try {
       const { id } = req.params;
       const response = await BooksDataBase.delete(
-        {where: {'id': id}});
-        return response;
-    }catch(err){
+        { where: { 'id': id } });
+      return response;
+    } catch (err) {
       return err;
     }
   }
