@@ -1,10 +1,10 @@
 const { request } = require('express');
-const BooksDataBase = require('../database/models/book');
+const CostumersDataBase = require('../database/models/costumer');
 
 module.exports = class Book {
 
   static all(req, res, next) {
-    BooksDataBase.findAll()
+    CostumersDataBase.findAll()
       .then((result) => {
         res.json(result);
       })
@@ -14,7 +14,7 @@ module.exports = class Book {
   static findByPK(req, res, next) {
     try {
       const { id } = req.params;
-      BooksDataBase.findByPk(id).then((result) => {
+      CostumersDataBase.findByPk(id).then((result) => {
         res.json(result);
       })
         .catch(next);
@@ -25,12 +25,11 @@ module.exports = class Book {
   }
 
   static create(req, res, next) {
-    const { nome, descricao } = req.body;
-    const status = 'disponivel';
-    BooksDataBase.create({
+    const { nome, telefone, email } = req.body;
+    CostumersDataBase.create({
       nome,
-      descricao,
-      status
+      telefone,
+      email
     })
       .then((result) => {
         res.status(201).json(result);
@@ -41,9 +40,9 @@ module.exports = class Book {
   static async update(req, res, next) {
     try {
       const { id } = req.params;
-      const { nome, descricao } = req.body;
-      const response = await BooksDataBase.update(
-        { nome, descricao },
+      const { nome, telefone, email } = req.body;
+      const response = await CostumersDataBase.update(
+        { nome, telefone, email },
         { where: { 'id': id } });
         res.status(200).json(response);
     } catch (err) {
@@ -55,7 +54,7 @@ module.exports = class Book {
   static async delete(req, res, next) {
     try {
       const { id } = req.params;
-      const response = await BooksDataBase.delete(
+      const response = await CostumersDataBase.delete(
         { where: { 'id': id } });
         res.status(202).json(response);
     } catch (err) {
