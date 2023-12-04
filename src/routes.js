@@ -1,21 +1,22 @@
 const  routes  = require('express').Router();
-const books = require('./controllers/book');
+const Books = require('./controllers/book');
+const Costumers = require('./controllers/costumer');
 
 routes.get('/', (request, response) => { return response.json('Funcionando') });
 
-/*
-routes.get ('/client/:id', envioEmailControllers.envio);
-routes.get ('/clients', envioEmailControllers.envio);
-routes.post ('/client', envioEmailControllers.envio);
-routes.patch ('/client/:id', envioEmailControllers.envio);
-routes.delete ('/client/:id', envioEmailControllers.envio);
-*/
 
-routes.get ('/book/:id', books.findByPK);
-routes.get ('/books', books.all);
-routes.post ('/book', books.create);
-routes.patch ('/book/:id', books.update);
-routes.delete ('/book/:id', books.delete);
+routes.get ('/costumer/:id', Costumers.findByPK);
+routes.get ('/costumers', Costumers.all);
+routes.post ('/costumer', Costumers.create);
+routes.patch ('/costumer/:id', Costumers.update);
+routes.delete ('/costumer/:id', Costumers.delete);
+
+
+routes.get ('/book/:id', Books.findByPK);
+routes.get ('/books', Books.all);
+routes.post ('/book', Books.create);
+routes.patch ('/book/:id', Books.update);
+routes.delete ('/book/:id', Books.delete);
 
 /*
 routes.get ('/rentBook/:id', books.findByPK);
