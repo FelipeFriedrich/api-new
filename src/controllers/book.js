@@ -24,7 +24,7 @@ module.exports = class Book {
   static create(req, res, next) {
     const { nome, descricao } = req.body;
     const status = 'disponivel';
-    Usuarios.create({
+    BooksDataBase.create({
       nome,
       descricao,
       status
