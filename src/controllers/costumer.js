@@ -54,7 +54,7 @@ module.exports = class Book {
   static async delete(req, res, next) {
     try {
       const { id } = req.params;
-      const response = await CostumersDataBase.delete(
+      const response = await CostumersDataBase.destroy(
         { where: { 'id': id } });
         res.status(202).json(response);
     } catch (err) {
