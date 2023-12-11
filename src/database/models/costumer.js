@@ -21,6 +21,8 @@ const Costumer = sequelize.define("costumer", {
       type: DataTypes.STRING,
       allowNull: false,
     },
+  }, {
+    freezeTableName: true,
   });
 
 //create table if not exists...

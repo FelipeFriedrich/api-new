@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 const sequelize = require("../index");
 
-const Books = sequelize.define("Book", { 
+const Books = sequelize.define("book", { 
     id: {
       type: DataTypes.INTEGER ,
       primaryKey: true,
@@ -20,7 +20,9 @@ const Books = sequelize.define("Book", {
     status:{
       type: DataTypes.STRING(20),
       allowNull: false,
-    }
+    },
+  }, {
+    freezeTableName: true,
   });
 
 //create table if not exists...
