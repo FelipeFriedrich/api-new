@@ -1,5 +1,7 @@
 const { request } = require('express');
 const RentBookDataBase = require('../database/models/rentBook');
+const BooksDataBase = require('../database/models/book');
+const CostumersDataBase = require('../database/models/costumer');
 
 module.exports = class Book {
 
