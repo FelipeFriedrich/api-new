@@ -6,22 +6,7 @@ const CostumersDataBase = require('../database/models/costumer');
 module.exports = class Book {
 
   static all(req, res, next) {
-    RentBookDataBase.findAll({
-      raw: true,
-      attributes: ['id', 'status', 'dataRetirada', 'dataDevolucao'],
-      include: [
-        {
-          model: BooksDataBase,
-          as: 'book',
-          attributes: ['id', 'nome']
-        },
-        {
-          model: CostumersDataBase,
-          as: 'costumer',
-          attributes: ['id', 'nome']
-        }
-      ]
-    })
+    RentBookDataBase.findAll()
       .then((result) => {
         res.json(result);
       })

@@ -1,6 +1,8 @@
 const { DataTypes } = require("sequelize");
 
 const sequelize = require("../index");
+const Book = require("./book");
+const Costumer = require("./costumer");
 
 const RentBook = sequelize.define("rentBook", {
   id: {
@@ -12,7 +14,7 @@ const RentBook = sequelize.define("rentBook", {
   idBook: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'book',
+      model: Book,
       key: 'id'
     },
     allowNull: false,
@@ -20,7 +22,7 @@ const RentBook = sequelize.define("rentBook", {
   idCostumer: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'costumer',
+      model: Costumer,
       key: 'id'
     },
     allowNull: false,
@@ -37,6 +39,7 @@ const RentBook = sequelize.define("rentBook", {
     type: DataTypes.DATE,
   },
 });
+
 
 //create table if not exists...
 const init = async () => {
